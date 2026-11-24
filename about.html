@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Golden Ink Press</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html" class="brand-btn" title="Back to Golden Ink Press Library">
+        <span class="brand-icon">✒️</span>
+        <span class="brand-name">Golden Ink Press</span>
+      </a>
+    </div>
+
+    <nav class="header-nav">
+      <a href="index.html" class="header-link" title="Return to The Vault and Book Shelves">Library Home</a>
+      <a href="about.html" class="header-link active-page" title="You are viewing About Golden Ink Press">About</a>
+      <a href="contact.html" class="header-link" title="Contact Golden Ink Press">Contact</a>
+    </nav>
+  </header>
+
+  <main class="main-content page-container">
+    <a href="index.html" class="back-btn" title="Return to Golden Ink Press Home">← Back to Golden Ink Press</a>
+
+    <!-- About Us & Terms Consent Box -->
+    <section id="about-us" class="page-card">
+      <span class="book-badge">About Us</span>
+      <h1>Golden Ink Press</h1>
+      <p>
+        On <strong>Golden Ink Press</strong>, users can create works, bookmarks, comments, tags, and other Content. Any information you publish on Golden Ink Press may be accessible by the public, Golden Ink Press users, and/or Golden Ink Press personnel. Be mindful when sharing personal information, including but not limited to your name, email, age, location, personal relationships, gender or sexual identity, racial or ethnic background, religious or political views, and/or account usernames for other sites.
+      </p>
+      <p>
+        To learn more, check out our <a href="#terms-of-service" class="inline-link">Terms of Service</a>, including the <a href="#content-policy" class="inline-link">Content and Policy</a> guidelines.
+      </p>
+
+      <div class="consent-box">
+        <label class="consent-item">
+          <input type="checkbox" id="check-tos" />
+          <span>I have read &amp; understood the 2024 Terms of Service, including the Content and Policy guidelines.</span>
+        </label>
+
+        <label class="consent-item">
+          <input type="checkbox" id="check-data" />
+          <span>By checking this box, you consent to the processing of your personal data in connection with our provision of Golden Ink Press and its related services to you. You acknowledge that data privacy laws may differ across jurisdictions. For more information about how your personal data will be processed, please refer to our Content and Policy section below.</span>
+        </label>
+
+        <button type="button" id="agree-terms-btn" class="btn-download">
+          I agree / consent to these Terms
+        </button>
+        <p id="consent-feedback" class="consent-status"></p>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="page-card">
+      <span class="book-badge">News</span>
+      <h2>Latest Golden Ink Press News</h2>
+      <ul class="detail-list">
+        <li><strong>New Trailer Editions Added:</strong> <em>Halo</em> and <em>My Sunshine That's Yet to Come</em> are now live on the Romance shelf with trailer previews.</li>
+        <li><strong>Multi-Genre Organization:</strong> Works are arranged across Romance, Adventure, Mystery, Sci-Fi, Historical, Horror, Comedy, Action, and Anime, each capped at 100 pages.</li>
+        <li><strong>Enhanced Search &amp; Bookmarks:</strong> Search works using tags, character names, titles, or your saved bookmarks.</li>
+      </ul>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="page-card">
+      <span class="book-badge">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+      <ul class="detail-list">
+        <li><strong>How do I open the book categories?</strong> Click <em>The Vault (☰)</em> on the top left of the home page to slide open all shelves.</li>
+        <li><strong>How do I search for a specific story or character?</strong> Type any tag (e.g., <code>rivals-to-lovers</code>), character name (e.g., <code>Sarawat</code>), work title, or <code>bookmarked</code> into the search box and press Search.</li>
+        <li><strong>Can I download books to read offline?</strong> Yes—open any book card and click <em>Download Book Copy</em> to save a formatted reading file.</li>
+      </ul>
+    </section>
+
+    <!-- Footer Anchor Sections -->
+    <section id="site-map" class="page-card">
+      <h3>Site Map</h3>
+      <p>Navigate between <strong>Library Home</strong> (<code>index.html</code>), <strong>The Vault</strong> category shelves, <strong>About Us / News / FAQ</strong> (<code>about.html</code>), and <strong>Contact Us</strong> (<code>contact.html</code>).</p>
+    </section>
+
+    <section id="diversity-statement" class="page-card">
+      <h3>Diversity Statement</h3>
+      <p>Golden Ink Press celebrates stories across cultures, languages, and genres—welcoming readers from every background to discover inclusive romance, global classics, anime, and speculative fiction.</p>
+    </section>
+
+    <section id="terms-of-service" class="page-card">
+      <h3>Terms of Service</h3>
+      <p>All summaries, trailers, and downloadable editions on Golden Ink Press are provided for personal reading and educational enjoyment. Users agree to respect intellectual property and community standards.</p>
+    </section>
+
+    <section id="content-policy" class="page-card">
+      <h3>Content and Policy</h3>
+      <p>Works on Golden Ink Press are tagged accurately by genre, trope, and page length (100 pages or less per edition) so readers can browse safely and find stories suited to their preferences.</p>
+    </section>
+
+    <section id="site-status" class="page-card">
+      <h3>Site Status</h3>
+      <p><span class="status-dot">●</span> <strong>All Systems Operational</strong> — All 9 shelves, bookmark storage, search indexing, and text downloads are active.</p>
+    </section>
+  </main>
+
+  <script>
+    const agreeBtn = document.getElementById("agree-terms-btn");
+    const checkTos = document.getElementById("check-tos");
+    const checkData = document.getElementById("check-data");
+    const feedback = document.getElementById("consent-feedback");
+
+    agreeBtn.addEventListener("click", () => {
+      if (!checkTos.checked || !checkData.checked) {
+        feedback.textContent = "Please check both boxes above before confirming your consent.";
+        feedback.style.color = "#f2a3a3";
+        return;
+      }
+      localStorage.setItem("gip_terms_accepted", "true");
+      feedback.textContent = "Thank you! Your consent to the Golden Ink Press Terms has been recorded.";
+      feedback.style.color = "#8be0b5";
+    });
+  </script>
+</body>
+</html>

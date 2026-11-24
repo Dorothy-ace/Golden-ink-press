@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golden Ink Press | Digital Library</title>
+  <link rel="stylesheet" href="style.css?v=4" />
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="site-header">
+    <div class="header-left">
+      <!-- Three-line sidebar button -->
+      <button
+        type="button"
+        id="sidebar-toggle"
+        class="sidebar-trigger"
+        aria-expanded="false"
+        aria-controls="main-sidebar"
+        title="Open Sidebar"
+        onclick="window.toggleMainSidebar && window.toggleMainSidebar(event)"
+      >
+        <span class="hamburger-lines">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <button type="button" class="brand-btn" id="home-brand-btn" title="Return to Golden Ink Press Home">
+        <span class="brand-icon">✒️</span>
+        <span class="brand-name">Golden Ink Press</span>
+      </button>
+    </div>
+
+    <!-- Header Navigation: About Dropdown & External Contact Link -->
+    <nav class="header-nav">
+      <div class="dropdown" id="about-dropdown">
+        <button type="button" class="header-link dropdown-toggle" id="about-menu-btn" title="Explore News, About Us, and FAQ">
+          About ▾
+        </button>
+        <div class="dropdown-menu" id="about-menu">
+          <a href="about.html#news" title="Latest shelf additions, trailer releases, and press updates">News</a>
+          <a href="about.html#about-us" title="Learn about Golden Ink Press, our story, and reader terms">About Us</a>
+          <a href="about.html#faq" title="Frequently asked questions about reading, bookmarks, and downloads">FAQ</a>
+        </div>
+      </div>
+
+      <a href="contact.html" class="header-link" title="Reach Golden Ink Press via Email, GitHub, WhatsApp, or Instagram">
+        Contact
+      </a>
+    </nav>
+  </header>
+
+  <!-- Backdrop Overlay -->
+  <div
+    id="sidebar-backdrop"
+    class="sidebar-backdrop"
+    style="display: none;"
+    onclick="window.closeMainSidebar && window.closeMainSidebar()"
+  ></div>
+
+  <!-- Collapsible Sidebar Drawer -->
+  <aside
+    id="main-sidebar"
+    class="sidebar"
+    aria-hidden="true"
+    style="transform: translateX(-100%); z-index: 2000;"
+  >
+    <div class="sidebar-header">
+      <div>
+        <h2>Menu</h2>
+        <p>Golden Ink Press</p>
+      </div>
+      <button
+        type="button"
+        id="close-sidebar-btn"
+        class="close-drawer-btn"
+        aria-label="Close Sidebar"
+        onclick="window.closeMainSidebar && window.closeMainSidebar()"
+      >✕</button>
+    </div>
+
+    <nav class="sidebar-menu" id="sidebar-menu">
+      <!-- 1. THE VAULT (All Categories) -->
+      <div class="menu-group">
+        <button type="button" class="menu-parent" id="menu-vault-btn" aria-expanded="true">
+          <span>The Vault</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="menu-children" id="vault-categories-list"></div>
+      </div>
+
+      <!-- 2. SEARCH (Works, Tags, People) -->
+      <div class="menu-group">
+        <button type="button" class="menu-parent" id="menu-search-btn" aria-expanded="true">
+          <span>Search</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="menu-children">
+          <button type="button" class="menu-sublink" data-search-scope="works">Works</button>
+          <button type="button" class="menu-sublink" data-search-scope="tags">Tags</button>
+          <button type="button" class="menu-sublink" data-search-scope="people">People</button>
+        </div>
+      </div>
+
+      <!-- 3. BROWSE (Works, Bookmarks, Browse) -->
+      <div class="menu-group">
+        <button type="button" class="menu-parent" id="menu-browse-btn" aria-expanded="true">
+          <span>Browse</span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="menu-children">
+          <button type="button" class="menu-sublink" data-browse-action="works">Works</button>
+          <button type="button" class="menu-sublink" data-browse-action="bookmarks">Bookmarks</button>
+          <button type="button" class="menu-sublink" data-browse-action="browse">Browse</button>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <section class="top-bar">
+      <div class="hero-text">
+        <h1>Golden Ink Press</h1>
+        <p>Curated stories, series trailers, and downloadable editions.</p>
+      </div>
+
+      <!-- Search Form -->
+      <form id="search-form" class="search-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search works, tags, or people..."
+          autocomplete="off"
+        />
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+    </section>
+
+    <!-- Home Welcome Banner -->
+    <section id="home-banner" class="home-banner">
+      <h2>Welcome to Golden Ink Press</h2>
+      <p>
+        Pick a genre shelf from <strong>The Vault</strong>, filter by <strong>Works, Tags, or People</strong>, or look up saved titles under <strong>Bookmarks</strong>.
+      </p>
+      <div class="library-stats" id="library-stats"></div>
+      <div class="search-hints">
+        Try searching:
+        <code>"rivals-to-lovers"</code>
+        <code>"Nuengdiao"</code>
+        <code>"The Heart Killers"</code>
+        <code>"Sarawat"</code>
+      </div>
+    </section>
+
+    <!-- VIEW 1: Categories Home / Category Shelf View -->
+    <div id="shelf-view">
+      <div class="status-bar">
+        <h3 id="current-heading">Browse Categories</h3>
+        <span id="book-count">0 items</span>
+      </div>
+      <section id="books-container" class="books-grid"></section>
+    </div>
+
+    <!-- VIEW 2: Single Book Detail & Download Page -->
+    <section id="book-detail-view" class="book-detail hidden"></section>
+
+    <!-- Lower Highlights Section -->
+    <section id="lower-grid" class="lower-grid">
+      <div class="info-panel">
+        <h4>Press News &amp; Notes</h4>
+        <ul>
+          <li><strong>Golden Ink Press Shelf Update:</strong> Individual BL titles and trailer editions organized with up to 100 pages per entry[cite: 4].</li>
+          <li><strong>Targeted Search Modes:</strong> Narrow results by <em>Works</em>, <em>Tags</em>, or <em>People</em> directly from the menu[cite: 4].</li>
+          <li><strong>Automatic Bookmarks:</strong> Saved titles stay stored locally and appear under <em>Bookmarks</em>[cite: 4].</li>
+        </ul>
+      </div>
+      <div class="info-panel">
+        <h4>Reading &amp; Download Steps</h4>
+        <ul>
+          <li><strong>1. Choose a Shelf:</strong> Open <em>The Vault</em> and select a genre category[cite: 4].</li>
+          <li><strong>2. Preview Details:</strong> Select a title to view its trailer highlight, synopsis, and tags[cite: 4].</li>
+          <li><strong>3. Save Offline:</strong> Click <em>Download Book Copy</em> to download a text edition[cite: 4].</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer with External Links & Hover Tooltips -->
+    <footer class="site-footer">
+      <div class="footer-col">
+        <h5>About the Golden Ink Press</h5>
+        <ul>
+          <li><a href="about.html#site-map" title="View the full map of shelves, pages, and reading sections on Golden Ink Press">Site Map</a></li>
+          <li><a href="about.html#diversity-statement" title="Read our commitment to diverse stories, voices, and global genres">Diversity Statement</a></li>
+          <li><a href="about.html#terms-of-service" title="Review the 2024 Golden Ink Press Terms of Service and reader rules">Terms of Service</a></li>
+          <li><a href="about.html#content-policy" title="Understand content ratings, tags, and publishing standards">Content and Policy</a></li>
+          <li><a href="about.html#site-status" title="Check current uptime, shelf updates, and platform availability">Site Status</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><a href="contact.html#policy-abuse" title="Submit policy questions or report content/copyright concerns">Policy Questions and Abuse Report</a></li>
+          <li><a href="contact.html#tech-support" title="Get help with downloads, search, or leave site feedback">Technical Support and Feedback</a></li>
+          <li><a href="contact.html#donate-volunteer" title="Support Golden Ink Press or volunteer as a curator">Donate or Volunteer</a></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>
